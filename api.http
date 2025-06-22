@@ -1,0 +1,30 @@
+### Create Order - REST
+POST http://localhost:8080/order
+Content-Type: application/json
+
+{
+  "customer_name": "Luciano ",
+  "total": 1000.00,
+  "created_at": "2025-06-21 12:00:00"
+}
+
+### List Orders - REST
+GET http://localhost:8080/order
+
+### -------------------------------------------------------------------
+
+### Create Order - GraphQL
+POST http://localhost:8081/graphql
+Content-Type: application/json
+
+{
+  "query": "mutation { createOrder(customer_name: \"Dudu\", total: 1000.00, created_at: \"2025-06-21 12:00:00\") { id customer_name total created_at } }"
+}
+
+### List Orders - GraphQL
+POST http://localhost:8081/graphql
+Content-Type: application/json
+
+{
+    "query": "query { listOrders { id customer_name } }"
+}

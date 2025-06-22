@@ -1,0 +1,14 @@
+type Order {
+  id: Int!
+  customer_name: String!
+  total: Float!
+  created_at: String!
+}
+
+type Query {
+  listOrders: [Order!]!
+}
+
+type Mutation {
+  createOrder(customer_name: String!, total: Float!, created_at: String!): Order!  
+}

@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ordersdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+      - "50051:50051"
+      - "8081:8081"
+    depends_on:
+      - db
+
+volumes:
+  mysql-data:
+
