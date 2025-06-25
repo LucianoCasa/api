@@ -9,17 +9,23 @@ services:
       MYSQL_PASSWORD: pass
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 5s
+      retries: 5      
     volumes:
       - mysql-data:/var/lib/mysql
 
   app:
     build: .
+   depends_on:
+      db:
+        condition: service_healthy    
     ports:
       - "8080:8080"
       - "50051:50051"
       - "8081:8081"
-    depends_on:
-      - db
 
 volumes:
   mysql-data:
