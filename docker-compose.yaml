@@ -19,7 +19,7 @@ services:
 
   app:
     build: .
-   depends_on:
+    depends_on:
       db:
         condition: service_healthy    
     ports:
